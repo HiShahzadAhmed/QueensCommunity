@@ -1,0 +1,43 @@
+.card-help {
+    box-shadow: 0px 0px 59px -40px rgb(0 0 0 / 75%);
+    border: 0rem;
+}
+
+.toast
+{
+	opacity: 1 !important;
+}
+
+.active
+{
+	background-color: #D62472 !important;
+}
+.active *
+{
+	color: #fff !important;
+}
+
+.card-help {
+    -webkit-box-shadow: 0px 0px 57px -43px rgb(0 0 0 / 75%) !important;
+    -moz-box-shadow: 0px 0px 57px -43px rgba(0,0,0,0.75) !important;
+    box-shadow: 0px 0px 57px -43px rgb(0 0 0 / 75%) !important;
+    border: 0px !important;
+    border-radius: 0;
+}
+.text-site
+{
+	color: #D62472 !important;
+}
+
+
+.questions-section h4
+{
+    cursor: pointer;
+}
+
+
+.index-videos iframe
+{
+    width: 100% !important;
+    min-height: 250px;
+}
