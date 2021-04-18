@@ -17,12 +17,13 @@ Route::get('/question/{slug}', 'FrontEndController@questionDetail')->name('quest
 
 Route::post('/attempt/login', 'AccountController@attemptLogin')->name('attempt.login');
 
-
+Route::post('dynamic/fetch', 'FrontEndController@fetchData')->name('category.fetch');
 
 Route::prefix('user')->name('user.')->middleware('auth')->namespace('User')->group(function() {
 
     Route::get('/dashboard', 'UserDashboardController@index')->name('dashboard');
-    
+
+
 
 
 
@@ -35,7 +36,6 @@ Route::prefix('user')->name('user.')->middleware('auth')->namespace('User')->gro
     Route::post('/update/question', 'QuestionController@updateQuestion')->name('update.question');
 
     Route::get('/remove/question/{id?}', 'QuestionController@removeQuestion')->name('remove.question');
-
 
 
 

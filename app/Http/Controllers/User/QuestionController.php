@@ -42,6 +42,7 @@ class QuestionController extends Controller
 			        'title'=>$request->title,
 			        'slug'=>Str::slug($request->title),
 			        'category'=>$request->category,
+                    'sub_category'=>$request->sub_category,
 			        'tags'=>$request->tags,
 			        'detail'=>$request->detail,
 			      ]);
@@ -77,6 +78,7 @@ class QuestionController extends Controller
 			        'title'=>$request->title,
 			        'slug'=>Str::slug($request->title),
 			        'category'=>$request->category,
+                    'sub_category'=>$request->sub_category,
 			        'tags'=>$request->tags,
 			        'detail'=>$request->detail,
 			      ]);
