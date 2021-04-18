@@ -71,9 +71,6 @@ class QuestionController extends Controller
 
 
     	      $question = Question::find(base64_decode($request->id));
-
-
-
     	           $question->update([
 			        'title'=>$request->title,
 			        'slug'=>Str::slug($request->title),

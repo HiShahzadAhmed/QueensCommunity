@@ -19,7 +19,6 @@ class CreateQuestionsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('category');
-            $table->string('sub_category')->nullable();
             $table->string('tags');
             $table->text('detail');
             $table->bigInteger('views')->default(0);

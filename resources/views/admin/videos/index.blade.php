@@ -32,7 +32,8 @@
                                         <td>{{ $video->description ?? 'N/A' }}</td>
                                         <td>{{ $video->updated_at->diffForHumans() ?? 'N/A' }}</td>
                                         <td>
-                                            <div class=" pull-right">
+                                            <div class="btn-group pull-right">
+                                                <a href="{{ route('admin.videos.edit',$video->id) }}" class="btn btn-relief-dark">View</a>
                                                 <form action="{{ route('admin.videos.destroy',$video->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')

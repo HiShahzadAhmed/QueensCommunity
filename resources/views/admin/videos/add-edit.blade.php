@@ -54,11 +54,36 @@
                                         <input type="text" class="form-control" placeholder="ETUacdj8DJs" maxlength="11" name="url" required value="{{ $video->url ?? '' }}">
                                     </fieldset>
                                 </div>
-
+                                <div class="col-xl-12 col-md-12 col-12 mb-1">
+                                    {{-- CATEGORIES --}}
+                                    <fieldset  class="form-group">
+                                        <label>Category</label>
+                                        <select class="questions-category form-control dynamic" id="category"  data-dependent="sub_category" name="category" >
+                                            @if(isset($video->category))
+                                            <option value="{{ $video->category }}" hidden>{{ $video->category }}</option>
+                                            @endif
+                                            @foreach (categories() as $data)
+                                            <option value="{{ $data->category }}">{{ $data->category }}</option>
+                                            @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-xl-12 col-md-12 col-12 mb-1">
+                                    <fieldset  class="form-group">
+                                        <label>Sub Category</label>
+                                        <select class="questions-category form-control" id="sub_category"  name="sub_category" >
+                                            @if(isset($video->sub_category))
+                                            <option value="{{ $video->sub_category }}" hidden>{{ $video->sub_category }}</option>
+                                            @endif
+                                        </select>
+                                    </fieldset>
+                                        {{ csrf_field() }}
+                                        {{-- END CATEGORIES  --}}
+                                </div>
                                 <div class="col-xl-12 col-md-12 col-12 mb-1">
                                     <fieldset class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" placeholder="Description" name="description" required></textarea>
+                                        <textarea class="form-control" placeholder="Description" name="description" required>{{ $video->description ?? '' }}</textarea>
                                     </fieldset>
                                 </div>
 
@@ -75,4 +100,36 @@
             </div>
         </div>
 </div>
+@endsection
+@section('js')
+{{-- CATEGORIES AJAX --}}
+<script>
+    $(document).ready(function(){
+     $('.dynamic').change(function(){
+      if($(this).val() != '')
+      {
+       var select = $(this).attr("id");
+       var value = $(this).val();
+       var dependent = $(this).data('dependent');
+       var _token = $('input[name="_token"]').val();
+       $.ajax({
+         url:"{{ route('category.fetch') }}",
+         method:"POST",
+        data:{select:select, value:value, _token:_token, dependent:dependent},
+        success:function(result)
+        {
+         $('#'+dependent).html(result);
+        }
+
+       })
+      }
+     });
+
+     $('#category').change(function(){
+      $('#sub_category').val('');
+     });
+
+    });
+    </script>
+
 @endsection

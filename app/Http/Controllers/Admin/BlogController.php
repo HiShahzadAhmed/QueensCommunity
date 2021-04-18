@@ -68,6 +68,7 @@ class BlogController extends Controller
         $post->meta_description = $request->meta_description;
         $post->keywords = $request->keywords;
         $post->category = $request->category;
+        $post->sub_category = $request->sub_category;
         $post->user_id = Auth::Id();
         $post->save();
         return redirect()->route('admin.blogs.index')->with('message', 'Blog has been created!');
@@ -133,6 +134,7 @@ class BlogController extends Controller
         $post->meta_description = $request->meta_description;
         $post->keywords = $request->keywords;
         $post->category = $request->category;
+        $post->sub_category = $request->sub_category;
         $post->user_id = Auth::Id();
         $post->save();
         return redirect()->route('admin.blogs.index')->with('message', 'Blog has been updated!');
