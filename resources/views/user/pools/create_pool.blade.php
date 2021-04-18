@@ -1,6 +1,15 @@
 ﻿@extends('layouts.front')
-@section('title', 'Post Question')
+@section('title', 'Create Pool')
 
+@section('css')
+<style>
+  .option-field
+  {
+    height: 30px !important;
+    margin-bottom: 5px;
+  }
+</style>
+@endsection
 
 
 
@@ -21,16 +30,30 @@
 
             <div class="box-panel">
 
-              <h2>Post Your Question</h2>
-              <p>Adding accurate and easy woring question will help you get better answers and more views.</p>
+              <h2>Create Your Pool</h2>
+              <p>What people say about your pool just post and leave to members</p>
               <hr>
               <!-- form login -->
-              <form class="margin-top-40" method="POST" action="{{ route('user.store.question') }}">
+              <form class="margin-top-40" method="POST" action="{{ route('user.store.pool') }}">
                 @csrf
                 <div class="form-group">
-                  <label>Question Title</label>
-                  <input type="text" name="title" placeholder="Question title" class="form-control" required="">
+                  <label>Pool Title</label>
+                  <input type="text" name="title" placeholder="Title" class="form-control" required="">
                 </div>
+
+                <div class="form-group">
+                  <label>Pool Options (double click on options to remove added options)</label> 
+                  <input type="text" name="option[]" class="form-control option-field" required="">
+                  <input type="text" name="option[]" class="form-control option-field" required="">
+                  <div class="append-fields"></div>
+                  <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-success btn-append-fields">Add option</button>
+                  </div>
+                </div>
+
+
+                
+
                 <div class="form-group">
                   <label>Category</label>
                   <select class="questions-category form-control" name="category" style="height: 55px">
@@ -43,15 +66,16 @@
                   </select>
                 </div>
 
+
+
                 <div class="form-group">
                   <label>Tags</label>
-
                   <input type="text" id="tags" placeholder="nature, beauty, health" name="tags" class="form-control" data-role="tagsinput" required="">
                 </div>
 
                 <div class="form-group">
-                  <label>Question Detials</label>
-                  <textarea cols="12" rows="12" placeholder="Post Your Question Details Here....." id="message" name="detail" class="form-control" required=""></textarea>
+                  <label>Pool End Time</label>
+                  <input type="datetime-local" name="ended_at" class="form-control" required="">
                 </div>
 
                 <div class="form-group text-right mb-0">
@@ -59,7 +83,8 @@
                   <label>Post anonymously</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary pull-right">Publish Your Question</button>
+
+                <button type="submit" class="btn btn-primary pull-right">Publish Your Pool</button>
 
               </form>
               <!-- form login -->
@@ -77,4 +102,21 @@
     </section>
     <!-- =-=-=-=-=-=-= Post QuestionEnd =-=-=-=-=-=-= -->
   </div>
+@endsection
+
+
+
+@section('js')
+<script>
+  $( ".btn-append-fields" ).click(function() {
+
+    $('.append-fields').append('<input type="text" name="option[]" class="form-control option-field appended-fields" required="">');    
+
+  });
+
+  $(document).on('dblclick', '.appended-fields', function() {
+    $(this).remove();
+  });
+
+</script>
 @endsection

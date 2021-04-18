@@ -37,7 +37,7 @@
                   <div class="card-body text-center">
                     <h2>Pools</h2>
                     <hr class="">
-                    <h1 class="text-site">{{ count(Auth::User()->questions) }}</h1>
+                    <h1 class="text-site">{{ count(Auth::User()->pools) }}</h1>
                     <hr>
 
                     <a href="{{ route('user.create.pool') }}" class="btn btn-dark btn-block">Create new pool</a>

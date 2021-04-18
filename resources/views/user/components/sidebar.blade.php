@@ -18,14 +18,14 @@
                     </div>
                   </a>
 
-                  <a href="{{ route('user.dashboard') }}">
-                    <div class="p-3 @routeis('user.dashboard') active @endrouteis">
+                  <a href="{{ route('user.index.pool') }}">
+                    <div class="p-3 @routeis('user.index.pool') active @endrouteis">
                       <h3><i class="fas fa-chart-bar"></i> Pools</h3>
                     </div>
                   </a>
                   
-                  <a href="">
-                    <div class="p-3 @routeis('user.dashboard') active @endrouteis">
+                  <a href="{{ route('user.profile') }}">
+                    <div class="p-3 @routeis('user.profile') active @endrouteis">
                       <h3><i class="fas fa-user pr-2"></i> Profile</h3>
                     </div>
                   </a>  

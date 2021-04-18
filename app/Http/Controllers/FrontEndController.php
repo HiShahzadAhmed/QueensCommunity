@@ -19,6 +19,7 @@ class FrontEndController extends Controller
 
 
     	$questions = Question::latest()->take(6)->get();
+        $pools = Pool::latest()->take(6)->get();
     	$videos = Video::latest()->take(3)->get();
     	$blogs = Blog::latest()->take(3)->get();
     	$trending_blogs = Blog::whereStatus('Trending')->take(3)->get();
@@ -27,10 +28,13 @@ class FrontEndController extends Controller
         return view('front.index', get_defined_vars());
     }
 
-    public function questionDetail($slug)
+    public function questionDetail($id, $slug)
     {
 
-    	$question = Question::whereSlug($slug)->first();
+
+    	$question = Question::whereQid($id)->with('questionAnswers')->first();
+        $hot_questions = Question::latest()->with('questionAnswers')->take(8)->get();
+        
 
     	if(!$question)
     	{
@@ -38,7 +42,7 @@ class FrontEndController extends Controller
     	}
 
 
-        return view('front.index', get_defined_vars());
+        return view('front.questions.question', get_defined_vars());
     }
 
 

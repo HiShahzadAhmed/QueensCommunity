@@ -1,5 +1,5 @@
 ﻿@extends('layouts.front')
-@section('title', 'Post Question')
+@section('title', 'Update Question')
 
 
 
@@ -19,21 +19,19 @@
           
           <div class="col-sm-12 col-md-8 mt-4 ">
 
-            <div class="box-panel">
-
-              <h2>Post Your Question</h2>
-              <p>Adding accurate and easy woring question will help you get better answers and more views.</p>
-              <hr>
+            <div class="box-panel pt-2">
               <!-- form login -->
-              <form class="margin-top-40" method="POST" action="{{ route('user.store.question') }}">
+              <form class="" method="POST" action="{{ route('user.update.question') }}">
                 @csrf
+                <input type="hidden" name="id" value="{{ $id }}">
                 <div class="form-group">
                   <label>Question Title</label>
-                  <input type="text" name="title" placeholder="Question title" class="form-control" required="">
+                  <input type="text" name="title" value="{{ $question->title }}" class="form-control" required="">
                 </div>
                 <div class="form-group">
                   <label>Category</label>
                   <select class="questions-category form-control" name="category" style="height: 55px">
+                    <option selected="" value="{{ $question->category }}" hidden="">{{ $question->category }}</option>
                     <option value="Fashion">Fashion</option>
                     <option value="Beauty">Beauty</option>
                     <option value="Lifestyle">Lifestyle</option>
@@ -46,20 +44,15 @@
                 <div class="form-group">
                   <label>Tags</label>
 
-                  <input type="text" id="tags" placeholder="nature, beauty, health" name="tags" class="form-control" data-role="tagsinput" required="">
+                  <input type="text" id="tags" value="{{ $question->tags }}" name="tags" class="form-control" data-role="tagsinput" required="">
                 </div>
 
                 <div class="form-group">
                   <label>Question Detials</label>
-                  <textarea cols="12" rows="12" placeholder="Post Your Question Details Here....." id="message" name="detail" class="form-control" required=""></textarea>
+                  <textarea cols="12" rows="12" id="message" name="detail" class="form-control" required="">{{ $question->detail }}</textarea>
                 </div>
 
-                <div class="form-group text-right mb-0">
-                  <input type="checkbox" name="is_anonymous" value="1">
-                  <label>Post anonymously</label>
-                </div>
-
-                <button type="submit" class="btn btn-primary pull-right">Publish Your Question</button>
+                <button type="submit" class="btn btn-primary pull-right">Save changes </button>
 
               </form>
               <!-- form login -->

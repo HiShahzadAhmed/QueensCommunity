@@ -42,6 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Question');
     }
+    public function pools()
+    {
+        return $this->hasMany('App\Models\Pool');
+    }
 
 
 }
