@@ -16,6 +16,7 @@ class CreatePoolOptionResultsTable extends Migration
         Schema::create('pool_option_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('pool_id')->constrained('pools')->onDelete('cascade')->after('user_id');
             $table->foreignId('pool_option_id')->constrained('pool_options')->onDelete('cascade');
             $table->timestamps();
         });

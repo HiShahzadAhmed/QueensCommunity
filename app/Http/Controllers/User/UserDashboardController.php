@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserDashboardController extends Controller
 {
@@ -52,6 +53,23 @@ class UserDashboardController extends Controller
 
     	$user->save();
     	return redirect()->back()->withMessage("Profile has been updated.");
+    }
+
+
+    public function submitDoctorDetail()
+    {
+        return view('user.doctor.detail', get_defined_vars());
+    }
+    public function updateDoctorDetail(Request $request)
+    {
+
+        $user = Auth::User();
+
+        $user->pmdc_no = $request->pmdc_no;
+        $user->name = 'Dr. New User';
+        $user->save();
+
+        return redirect()->route('user.dashboard')->withMessage('Hello! Welcome to your dashboard');
     }
 
 }

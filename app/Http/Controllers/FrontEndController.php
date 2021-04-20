@@ -45,6 +45,25 @@ class FrontEndController extends Controller
         return view('front.questions.question', get_defined_vars());
     }
 
+    public function poolDetail($id, $slug)
+    {
+
+
+        $pool = Pool::wherePid($id)->first();
+        $pools = Pool::latest()->take(8)->get();
+        
+
+        if(!$pool)
+        {
+            abort(404);
+        }
+
+        
+        
+
+        return view('front.pools.pool', get_defined_vars());
+    }
+
 
 
 }

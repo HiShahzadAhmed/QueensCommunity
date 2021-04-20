@@ -35,10 +35,22 @@ class AccountController extends Controller
     		{
     			if(!$user)
     			{
+
+                    if(isset($request->role))
+                    {
+                        $role = 'doctor';
+                    }
+                    else
+                    {
+                        $role = 'user';
+                    }
+
+
     				$user = User::create([
-	    				'phone' => Session::get('phone'),
-                        'avatar' => 'uploads/users/default.png',
-	    				'pin' => $request->pin,
+	    				'phone'    => Session::get('phone'),
+                        'avatar'   => 'uploads/users/default.png',
+	    				'pin'      => $request->pin,
+                        'role'     => $role
 	    			]);
     			}
 
@@ -60,7 +72,7 @@ class AccountController extends Controller
     	else
     	{
 
-
+            $is_role = 1;
     		$code = 1234;
     		// $code = mt_rand(0000, 9999);
     		// $this->sendMessage("Your QueensQommunity account PIN is: ".$code, $request->phone);

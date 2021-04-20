@@ -20,7 +20,13 @@ Route::post('/attempt/login', 'AccountController@attemptLogin')->name('attempt.l
 
 
 
-Route::prefix('user')->name('user.')->middleware('auth')->namespace('User')->group(function() {
+Route::middleware('auth')->group(function() {
+    Route::get('doctor/detail', 'User\UserDashboardController@submitDoctorDetail')->name('submit.doctor.detail');
+    Route::post('update/doctor/detail', 'User\UserDashboardController@updateDoctorDetail')->name('update.doctor.detail');
+});
+
+
+Route::prefix('user')->name('user.')->middleware(['auth', 'role.check'])->namespace('User')->group(function() {
 
     Route::get('/dashboard', 'UserDashboardController@index')->name('dashboard');
 
@@ -45,6 +51,7 @@ Route::prefix('user')->name('user.')->middleware('auth')->namespace('User')->gro
     Route::get('/create/pool', 'PoolController@createPool')->name('create.pool');
     Route::post('/store/pool', 'PoolController@storePool')->name('store.pool');
     Route::get('/remove/pool/{id?}', 'PoolController@removePool')->name('remove.pool');
+    Route::post('pool/suggestion', 'PoolController@submitPoolSuggestion')->name('submit.pool.suggestion');
 
 
 

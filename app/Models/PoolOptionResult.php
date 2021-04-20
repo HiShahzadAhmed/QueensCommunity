@@ -9,4 +9,10 @@ class PoolOptionResult extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function PoolOption()
+    {
+        return $this->belongsTo('App\Models\PoolOption');
+    }
+    
 }

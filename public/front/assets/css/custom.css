@@ -1,3 +1,30 @@
+.main-navbar
+{
+    background-color: #fff;
+}
+
+.main-navbar .nav-link:hover
+{
+    color: #D62472 !important;
+}
+
+.navbar-light .navbar-toggler, 
+.navbar-light .navbar-toggler:focus 
+{
+    color: rgba(0,0,0,.5);
+    border-color: rgba(0,0,0,0);
+    outline: 0;
+    font-size: 24px;
+}
+
+.main-logo
+{
+    width: 160px;
+}
+
+
+
+
 .card-help {
     box-shadow: 0px 0px 59px -40px rgb(0 0 0 / 75%);
     border: 0rem;
@@ -45,5 +72,35 @@
 .answer-user-avatar
 {
     width: 36px;
+    border-radius: 100px;
+}
+
+
+.social-links-two .fa
+{
+    line-height: 26px;
+}
+
+
+@media (max-width: 993px) 
+{
+
+.footer-area
+{
+    text-align: center;
+}
+
+
+}
+.footer-social-links a
+{
+    padding: 5px;
+}
+
+
+.front-icons
+{
+    width: 30px !important;
+    height: 30px;
     border-radius: 100px;
 }

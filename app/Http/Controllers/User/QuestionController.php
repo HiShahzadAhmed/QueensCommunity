@@ -102,7 +102,8 @@ class QuestionController extends Controller
         QuestionAnswer::create([
             'user_id'     => Auth::Id(),
             'question_id' => base64_decode($request->question_id),
-            'answer'      => $request->answer
+            'answer'      => $request->answer,
+            'answered_by' => Auth::User()->role
         ]);
 
         return back()->withMessage('Your answer has been posted.');

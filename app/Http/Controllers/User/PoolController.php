@@ -65,5 +65,28 @@ class PoolController extends Controller
     }
 
 
+    public function submitPoolSuggestion(Request $request)
+    {
+
+    	$option = PoolOptionResult::wherePoolId($request->pool_id)->whereUserId(Auth::Id())->first();
+
+    	if($option)
+    	{
+    		$option->pool_option_id = $request->option;
+    		$option->save();
+    		return back()->withMessage('Pool suggestion has been updated.');
+    	}
+
+    	PoolOptionResult::create([
+    		'pool_option_id' => $request->option,
+    		'pool_id' => $request->pool_id,
+    		'user_id' => Auth::Id(),
+    	]);
+
+    	return back()->withMessage('Your suggestion has been submitted.');
+
+    }
+
+
 
 }

@@ -8,8 +8,8 @@
 
 <div class="full-section search-section">
     <div class="search-area container">
-        <h3 class="search-title">Queen's Community</h3>
-        <p class="search-tag-line">Welcome to Queen's Community Female Only Platform to Ask, Share and Consult Doctors About Health Related Issues.</p>
+        <h3 class="search-title">{{$setting['banner_heading'] ?? ''}}</h3>
+        <p class="search-tag-line">{{$setting['banner_description'] ?? ''}}</p>
         <form autocomplete="off" method="get" class="search-form clearfix" id="search-form">
             <input type="text" title="* Please enter a search term!" placeholder="Type your search terms here" class="search-term " autocomplete="off">
             <input type="submit" value="Search" class="search-btn">
@@ -79,11 +79,11 @@
                 
                 @foreach($videos as $video)
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="blog-grid">
+                    <div class="blog-grid card-help border-0">
                         <iframe  src="https://www.youtube.com/embed/{{ $video->url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <div class="blog-content">
+                        <div class="blog-content border-0">
                             <h5>{{ $video->title }}</h5>
-                            <p>{{ $video->description }}</p>
+                            <p>{{ Str::Limit($video->description, 80) }}</p>
                         </div>
                     </div>
                 </div>
@@ -125,34 +125,34 @@
                                     @forelse($questions as $question)
                                         <div class="col-md-4">
                                         <!-- Question Listing -->
-                                            <div class="listing-grid ">
+                                            <div class="listing-grid card-help">
                                                 <div class="row">
 
-                                                    <div class="col-md-10 col-sm-8  col-xs-12">
+                                                    <div class="col-md-10 col-sm-8  col-10">
                                                         <span>{{ $question->category ?? '' }}</span>
                                                         <h5><a  href="{{ route('question.detail', ['id' => $question->qid, 'slug' => $question->slug]) }}"> {{ $question->title ?? '' }}</a></h5>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-12">
-                                                        <img src="{{ asset('front/assets') }}/img/question.svg" alt="Image">
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <img class="front-icons" src="{{ asset('front/assets') }}/img/question.svg" alt="Image">
                                                     </div>
                                                     <div class="col-md-12 col-sm-12  col-xs-12 margin-top-10">
-                                                        <h5>Top Answer</h5>
-                                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.</p>
-                                                        <h5>15 Answers</h5>
+                                                        <h5>Answer</h5>
+                                                        <p>{{ Str::Limit($question->questionAnswers[0]->answer ?? '' , 100) }}</p>
+                                                        <h5>{{ count($question->questionAnswers) }} Answers</h5>
                                                     </div>
 
 
                                                     @if($question->is_anonymous)
-                                                        <div class="col-md-2 col-sm-4 col-xs-12 hidden-xs">
-                                                            <img  class="img-responsive center-block" src="{{ asset('uploads/users/default.png') }}">
+                                                        <div class="col-md-2 col-sm-4 col-2 hidden-xs">
+                                                            <img  class="img-responsive center-block front-icons" src="{{ asset('uploads/users/default.png') }}">
                                                         </div>
-                                                        <div class="col-md-6 col-sm-4 col-xs-12 hidden-xs margin-top-20">
+                                                        <div class="col-md-6 col-sm-4 col-6 hidden-xs margin-top-20">
                                                             <a href="#">Anonymous</a>
                                                         </div>
                                                     @else
 
                                                         <div class="col-md-2 col-sm-4 col-xs-12 hidden-xs">
-                                                            <img  class="img-responsive center-block" src="{{ asset($question->user->avatar) }}">
+                                                            <img  class="img-responsive center-block front-icons" src="{{ asset($question->user->avatar) }}">
                                                         </div>
                                                         <div class="col-md-6 col-sm-4 col-xs-12 hidden-xs margin-top-20">
                                                             <a href="#">{{ $question->user->name ?? '' }}</a>
@@ -160,7 +160,7 @@
 
                                                     @endif
                                                         <div class="col-md-4 col-sm-4 col-xs-12 hidden-xs margin-top-20">
-                                                            <a href="{{ route('question.detail', ['id' => $question->qid, 'slug' => $question->slug]) }}" class="btn btn-primary btn-sm qbtn">Answer</a>
+                                                            <a href="{{ route('question.detail', ['id' => $question->qid, 'slug' => $question->slug]) }}" class="btn btn-primary btn-sm qbtn">Answers</a>
                                                         </div>
 
 
@@ -202,15 +202,15 @@
                                     @forelse($pools as $pool)
                                         <div class="col-md-4">
                                         <!-- Question Listing -->
-                                            <div class="listing-grid ">
+                                            <div class="listing-grid card-help">
                                                 <div class="row">
 
-                                                    <div class="col-md-10 col-sm-8  col-xs-12">
+                                                    <div class="col-md-10 col-sm-8  col-10">
                                                         <span>{{ $pool->category ?? '' }}</span>
-                                                        <h4><a  href="#"> {{ $pool->title ?? '' }}</a></h4>
+                                                        <h4><a  href="{{ route('pool.detail', ['id' => $pool->pid, 'slug' => $pool->slug]) }}"> {{ $pool->title ?? '' }}</a></h4>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-12">
-                                                        <img src="{{ asset('front/assets') }}/img/poll.png" alt="Image">
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <img class="front-icons" src="{{ asset('front/assets') }}/img/poll.png" alt="Image">
                                                     </div>
                                                     <div class="col-md-12 col-sm-12  col-xs-12 margin-top-10 ml-3">
                                                         
@@ -224,17 +224,11 @@
                                                         @endforeach
                                                         
                                                         
-                                                        <h5>15 Votes</h5>
+                                                        <h5>{{ count($pool->poolOptionResults) }} Votes</h5>
                                                     </div>
 
-                                                    <div class="col-md-2 col-sm-4 col-xs-12 hidden-xs">
-                                                        <a href="#"><img  class="img-responsive center-block" src="{{ asset('front/assets') }}/img/a.png" alt="User-Image"></a>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-4 col-xs-12 hidden-xs margin-top-20">
-                                                        <a href="#">Anonymas</a>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12 hidden-xs margin-top-20">
-                                                        <a href="#" class="btn btn-primary btn-sm qbtn">Results</a>
+                                                    <div class="col-md-12 text-right hidden-xs margin-top-20">
+                                                        <a href="{{ route('pool.detail', ['id' => $pool->pid, 'slug' => $pool->slug]) }}" class="btn btn-primary btn-sm qbtn">Results</a>
                                                     </div>
                                                 </div>
                                             </div>

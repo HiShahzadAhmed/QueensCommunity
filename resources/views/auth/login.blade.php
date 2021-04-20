@@ -51,6 +51,15 @@
                       <p>Please Enter 4 digit PIN or  (<a href="{{ route('login') }}">Change phone number</a>)</p>
                       <input required="" type="number"  min="0" max="9999" id="pin" name="pin" class="form-control" >
                     </div>
+
+                    @if(isset($is_role))
+                      <div class="form-group">
+                        <input type="checkbox" id="role" name="role" value="doctor">
+                        <label for="role">Are you a doctor?</label>
+                      </div>
+                    @endif
+
+                    
                   @endif
 
                   

@@ -15,5 +15,10 @@ class Pool extends Model
         return $this->hasMany('App\Models\PoolOption');
     }
 
+    public function poolOptionResults()
+    {
+        return $this->hasMany('App\Models\PoolOptionResult', 'pool_id');
+    }
+
 
 }
