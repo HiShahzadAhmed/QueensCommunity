@@ -22,7 +22,7 @@ class CreateQuestionsTable extends Migration
             $table->string('tags');
             $table->text('detail');
             $table->bigInteger('views')->default(0);
-            $table->enum('status', ['active', 'pending', 'cancelled'])->default('active');            
+            $table->enum('status', ['active', 'pending', 'cancelled'])->default('active');
             $table->timestamps();
         });
     }

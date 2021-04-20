@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Str;
 class PoolController extends Controller
 {
-    
+
 
 	public function index()
     {
@@ -44,6 +44,7 @@ class PoolController extends Controller
 			        'title'		=>	$request->title,
 			        'slug'		=>	Str::slug($request->title),
 			        'category'	=>	$request->category,
+                    'sub_category'	=>	$request->sub_category,
 			        'tags'		=>	$request->tags,
 			        'ended_at'	=>	Carbon::parse($request->ended_at)->format('Y-m-d H:i:s'),
                     'is_anonymous' => $request->is_anonymous ?? 0
@@ -51,8 +52,8 @@ class PoolController extends Controller
 			      ]);
 
 
-		    	 for ($i=0; $i < count($request->option)  ; $i++) 
-		    	 { 
+		    	 for ($i=0; $i < count($request->option)  ; $i++)
+		    	 {
 		    	 	PoolOption::create([
 		    	 		'pool_id'  => $pool->id,
 		    	 		'title'       => $request->option[$i]

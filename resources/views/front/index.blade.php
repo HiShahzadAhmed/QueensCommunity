@@ -76,7 +76,7 @@
             <!-- Row -->
 
             <div class="row">
-                
+
                 @foreach($videos as $video)
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="blog-grid card-help border-0">
@@ -87,14 +87,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 @endforeach
 
             </div>
             <!-- Row End -->
             <!-- Pagination View More -->
                 <div class="text-center clearfix margin-top-10 margin-bottom-30">
-                    <button class="btn btn-primary btn-lg qbtn">View All Videos</button>
+                    <a href="{{ route('view.videos') }}" class="btn btn-primary btn-md qbtn">View All Videos</a>
                 </div>
             <!-- Pagination View More End -->
         </div>
@@ -120,7 +120,7 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <!-- Question Listing -->
-                                
+
                                 <div class="row">
                                     @forelse($questions as $question)
                                         <div class="col-md-4">
@@ -162,9 +162,6 @@
                                                         <div class="col-md-4 col-sm-4 col-xs-12 hidden-xs margin-top-20">
                                                             <a href="{{ route('question.detail', ['id' => $question->qid, 'slug' => $question->slug]) }}" class="btn btn-primary btn-sm qbtn">Answers</a>
                                                         </div>
-
-
-                                                    
                                                 </div>
                                             </div>
                                         <!-- Question Listing End -->
@@ -178,7 +175,7 @@
 
                             <!-- Pagination View More -->
                             <div class="text-center clearfix margin-top-20">
-                                <button class="btn btn-primary btn-md qbtn">View All Question</button>
+                                <a href="{{ route('view.question') }}" class="btn btn-primary btn-md qbtn">View All Question</a>
                             </div>
                             <!-- Pagination View More End -->
                         </div>
@@ -213,7 +210,7 @@
                                                         <img class="front-icons" src="{{ asset('front/assets') }}/img/poll.png" alt="Image">
                                                     </div>
                                                     <div class="col-md-12 col-sm-12  col-xs-12 margin-top-10 ml-3">
-                                                        
+
                                                         @foreach($pool->poolOptions as $option)
                                                             <div class="form-check">
                                                               <input class="form-check-input" type="radio" disabled>
@@ -222,8 +219,8 @@
                                                               </label>
                                                             </div>
                                                         @endforeach
-                                                        
-                                                        
+
+
                                                         <h5>{{ count($pool->poolOptionResults) }} Votes</h5>
                                                     </div>
 
@@ -242,7 +239,8 @@
                                 </div>
                             <!-- Pagination View More -->
                             <div class="text-center clearfix margin-top-20">
-                                <button class="btn btn-primary btn-lg qbtn">View All Polls</button>
+                                <a href="{{ route('view.polls') }}" class="btn btn-primary btn-md qbtn">View All Polls</a>
+
                             </div>
                             <!-- Pagination View More End -->
                         </div>

@@ -43,6 +43,7 @@ class QuestionController extends Controller
 			        'title'=>$request->title,
 			        'slug'=>Str::slug($request->title),
 			        'category'=>$request->category,
+                    'sub_category'=>$request->sub_category,
 			        'tags'=>$request->tags,
 			        'detail'=>$request->detail,
                     'is_anonymous' => $request->is_anonymous ?? 0
@@ -72,13 +73,11 @@ class QuestionController extends Controller
 
 
     	      $question = Question::find(base64_decode($request->id));
-
-
-
     	           $question->update([
 			        'title'=>$request->title,
 			        'slug'=>Str::slug($request->title),
 			        'category'=>$request->category,
+                    'sub_category'=>$request->sub_category,
 			        'tags'=>$request->tags,
 			        'detail'=>$request->detail,
 			      ]);

@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-		
+
 		<title>@yield('title') | Queen's Community</title>
-		
+
 		<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"  />
@@ -24,9 +24,9 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<ul class="top-nav text-center">
-						<li><a href="#">Read |</a></li>
-						<li class="hidden-xs"><a href="#">Watch |</a></li>
-						<li  class="hidden-xs"><a href="#">Hangout |</a></li>
+						<li><a href="{{ route('view.blogs') }}">Read |</a></li>
+						<li class="hidden-xs"><a href="{{ route('view.videos') }}">Watch |</a></li>
+						<li  class="hidden-xs"><a href="{{ route('view.hangout') }}">Hangout |</a></li>
 						@if(!Auth::check())
 							<li  class="hidden-xs"><a href="{{ route('login') }}">Login</a></li>
 						@endif
@@ -38,7 +38,7 @@
 
 <div class="container">
 	<nav class="navbar navbar-expand-lg navbar-light">
-		
+
 		<a href="{{ route('index') }}" class="navbar-brand">
 			<img class="img-responsive main-logo" alt="" src="{{ asset($setting['logo'] ?? '')  }}">
 		</a>
@@ -118,7 +118,7 @@
 		<div class="col-lg-7 col-sm-6 col-xs-12 column">
 			<div class="footer-widget about-widget">
 							<h2>Queen's Community</h2>
-							
+
 							<div>
 								<p><span class="icon fa fa-map-marker"></span> {{$setting['address'] ?? ''}}</p>
 								<p><span class="icon fa fa-phone"></span> {{$setting['phone'] ?? ''}}</p>

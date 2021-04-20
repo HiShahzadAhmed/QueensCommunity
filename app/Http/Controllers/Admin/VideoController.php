@@ -50,6 +50,8 @@ class VideoController extends Controller
         $video->title = $request->title;
         $video->url   = $request->url;
         $video->description   = $request->description;
+        $video->category   = $request->category;
+        $video->sub_category   = $request->sub_category;
         $video->user_id = Auth::Id();
         $video->save();
         return redirect()->route('admin.videos.index')->with('message', 'Video has been created!');
@@ -74,7 +76,8 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = Video::find($id);
+        return view('admin.videos.add-edit', get_defined_vars());
     }
 
     /**
@@ -86,7 +89,22 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'url'=>'required',
+            'description'=>'required',
+          ]);
+
+
+        $video = Video::find($id);
+        $video->title = $request->title;
+        $video->url   = $request->url;
+        $video->description   = $request->description;
+        $video->category   = $request->category;
+        $video->sub_category   = $request->sub_category;
+        $video->user_id = Auth::Id();
+        $video->save();
+        return redirect()->route('admin.videos.index')->with('message', 'Video has been Updated!');
     }
 
     /**

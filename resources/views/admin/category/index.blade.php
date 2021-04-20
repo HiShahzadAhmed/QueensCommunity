@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title','Video Management')
-@section('heading','Video Management')
+@section('title','Category Management')
+@section('heading','Category Management')
 
 @section('content')
 <div class="row">
@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card">
                 <div class="card-header ml-auto">
-                    <a href="{{ route('admin.videos.create') }}" class="btn btn-relief-primary">+ Add video</a>
+                    <a href="{{ route('admin.categories.create') }}" class="btn btn-relief-primary">+ Add Category</a>
                 </div>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -17,24 +17,20 @@
                             <table class="table datatable">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>URL</th>
-                                        <th>Description</th>
-                                        <th>Created</th>
+                                        <th>Category</th>
+                                        <th>Subcategory</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($videos as $video)
+                                    @foreach ($categories as $category)
                                     <tr>
-                                        <td>{{ $video->title ?? 'N/A' }}</td>
-                                        <td><a href="https://www.youtube.com/watch?v={{ $video->url ?? 'N/A' }}" target="_blank">Video URL</a></td>
-                                        <td>{{ $video->description ?? 'N/A' }}</td>
-                                        <td>{{ $video->updated_at->diffForHumans() ?? 'N/A' }}</td>
+                                        <td>{{ $category->category ?? 'N/A' }}</td>
+                                        <td>{{ $category->sub_category ?? 'N/A' }}</td>
                                         <td>
                                             <div class="btn-group pull-right">
-                                                <a href="{{ route('admin.videos.edit',$video->id) }}" class="btn btn-relief-dark">View</a>
-                                                <form action="{{ route('admin.videos.destroy',$video->id) }}" method="POST">
+                                                <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-relief-dark">View</a>
+                                                <form action="{{ route('admin.categories.destroy',$category->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-relief-danger" onclick="return confirm('Are you sure you want to delete?')" type="submit">Trash</button>

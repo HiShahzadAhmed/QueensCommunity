@@ -57,22 +57,30 @@
                                     <input type="file" class="dropify" name="featured_image" data-default-file="@if(isset($blog->featured_image)){{ asset($blog->featured_image) ?? '' }}@endif">
                                 </div>
                                 <div class="col-xl-12 col-md-12 col-12 mb-1">
-                                    <fieldset class="form-group">
-                                        <label for="basicInput">Category</label>
-                                        <select class="form-control" name="category" required>
+                                     {{-- CATEGORIES --}}
+                                    <fieldset  class="form-group">
+                                        <label>Category</label>
+                                        <select class="questions-category form-control dynamic" id="category"  data-dependent="sub_category" name="category" >
                                             @if(isset($blog->category))
                                             <option value="{{ $blog->category }}" hidden>{{ $blog->category }}</option>
                                             @endif
-                                            <option value="Fashion">Fashion</option>
-                                            <option value="Beauty">Beauty</option>
-                                            <option value="Lifestyle">Lifestyle</option>
-                                            <option value="Wedding">Wedding</option>
-                                            <option value="Wellness">Wellness</option>
-                                            <option value="Entertainment">Entertainment</option>
+                                            @foreach (categories() as $data)
+                                            <option hidden>Select Category</option>
+                                            <option value="{{ $data->category }}">{{ $data->category }}</option>
+                                            @endforeach
                                         </select>
                                     </fieldset>
+                                    <fieldset  class="form-group">
+                                        <label>Sub Category</label>
+                                        <select class="questions-category form-control" id="sub_category"  name="sub_category" >
+                                            @if(isset($blog->sub_category))
+                                            <option value="{{ $blog->sub_category }}" hidden>{{ $blog->sub_category }}</option>
+                                            @endif
+                                        </select>
+                                    </fieldset>
+                                        {{ csrf_field() }}
+                                        {{-- END CATEGORIES  --}}
                                 </div>
-
                                 <div class="col-xl-12 col-md-12 col-12 mb-1">
                                     <fieldset class="form-group">
                                         <label for="basicInput">Status</label>
@@ -88,7 +96,7 @@
                                     </fieldset>
                                 </div>
 
-                                
+
                                 <div class="col-xl-12 col-md-12 col-12 mb-1">
                                     <fieldset class="form-group">
                                         <label for="basicInput">Meta Description</label>
@@ -114,4 +122,36 @@
             </div>
         </div>
 </div>
+@endsection
+@section('js')
+{{-- CATEGORIES AJAX --}}
+<script>
+    $(document).ready(function(){
+     $('.dynamic').change(function(){
+      if($(this).val() != '')
+      {
+       var select = $(this).attr("id");
+       var value = $(this).val();
+       var dependent = $(this).data('dependent');
+       var _token = $('input[name="_token"]').val();
+       $.ajax({
+         url:"{{ route('category.fetch') }}",
+         method:"POST",
+        data:{select:select, value:value, _token:_token, dependent:dependent},
+        success:function(result)
+        {
+         $('#'+dependent).html(result);
+        }
+
+       })
+      }
+     });
+
+     $('#category').change(function(){
+      $('#sub_category').val('');
+     });
+
+    });
+    </script>
+
 @endsection
