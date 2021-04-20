@@ -39,6 +39,9 @@
             @can('browse_videos')
                 <li class="nav-item @routeis('admin.videos.index') active @endrouteis"><a href="{{ route('admin.videos.index') }}"><i class="feather icon-video"></i>Videos</a></li>
             @endcan
+            @can('browse_category')
+            <li class="nav-item @routeis('admin.categories.index') active @endrouteis"><a href="{{ route('admin.categories.index') }}"><i class="feather icon-list"></i>Category</a></li>
+            @endcan
 
 
 

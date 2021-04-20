@@ -1,5 +1,5 @@
 ﻿@extends('layouts.front')
-@section('title', 'Questions')
+@section('title', 'Pools')
 
 
 
@@ -23,29 +23,35 @@
 
             <div id="accordion" class="questions-section">
 
-              @foreach(Auth::User()->questions as $question)
+              @foreach(Auth::User()->pools as $pool)
 
                 <div class="card mb-4 card-help">
                 <div class="card-header">
                   <h5 class="mb-0">
-                    <h4  data-toggle="collapse" data-target="#{{ $loop->iteration }}collapseOne" aria-expanded="true" aria-controls="{{ $loop->iteration }}collapseOne">{{ $question->title }}</h4>
+                    <h4  data-toggle="collapse" data-target="#{{ $loop->iteration }}collapseOne" aria-expanded="true" aria-controls="{{ $loop->iteration }}collapseOne">{{ $pool->title }}</h4>
                   </h5>
                 </div>
 
                 <div id="{{ $loop->iteration }}collapseOne" class="collapse" data-parent="#accordion">
                   <div class="card-body">
-                    {{ $question->detail }}
+                    <h3 class="font-weight-bold">{{ $pool->title }}</h3>
+                    <hr>
+                    @foreach($pool->poolOptions as $option)
+                    <h4 class="alert alert-warning py-1"><strong>{{ $loop->iteration }}:</strong> {{ $option->title }}</h4>
+                    @endforeach
+
+
+
                     <hr>
                     <div class="row">
                       <div class="col-sm-6 text-left">
-                          <h4>Category: <strong>{{ $question->category }}</strong></h4>
-                          <h4>Tags: <strong>{{ $question->tags }}</strong></h4>
+                          <h4>Category: <strong>{{ $pool->category }}</strong></h4>
+                          <h4>Tags: <strong>{{ $pool->tags }}</strong></h4>
                       </div>
                       <div class="col-sm-6 text-right">
                         <div class="btn-group mt-3">
-                          <a href="{{ route('question.detail', ['id' => $question->qid, 'slug' => $question->slug]) }}" class="btn btn-sm btn-info">More detail</a>
-                          <a href="{{ route('user.edit.question', base64_encode($question->id)) }}" class="btn btn-sm btn-success">Edit</a>
-                          <a href="{{ route('user.remove.question', base64_encode($question->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                          <a href="{{ route('pool.detail', ['id' => $pool->pid, 'slug' => $pool->slug]) }}" class="btn btn-sm btn-info">More detail</a>
+                          <a href="{{ route('user.remove.pool', base64_encode($pool->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                         </div>
                       </div>
                     </div>

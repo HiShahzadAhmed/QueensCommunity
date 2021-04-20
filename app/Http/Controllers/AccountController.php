@@ -37,6 +37,7 @@ class AccountController extends Controller
     			{
     				$user = User::create([
 	    				'phone' => Session::get('phone'),
+                        'avatar' => 'uploads/users/default.png',
 	    				'pin' => $request->pin,
 	    			]);
     			}

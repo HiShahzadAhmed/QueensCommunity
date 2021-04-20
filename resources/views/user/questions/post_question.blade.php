@@ -59,6 +59,11 @@
                   <textarea cols="12" rows="12" placeholder="Post Your Question Details Here....." id="message" name="detail" class="form-control" required=""></textarea>
                 </div>
 
+                <div class="form-group text-right mb-0">
+                  <input type="checkbox" name="is_anonymous" value="1">
+                  <label>Post anonymously</label>
+                </div>
+
                 <button type="submit" class="btn btn-primary pull-right">Publish Your Question</button>
 
               </form>

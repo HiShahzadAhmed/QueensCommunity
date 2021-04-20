@@ -1,6 +1,15 @@
 ﻿@extends('layouts.front')
-@section('title', 'Update Question')
+@section('title', 'Create Pool')
 
+@section('css')
+<style>
+  .option-field
+  {
+    height: 30px !important;
+    margin-bottom: 5px;
+  }
+</style>
+@endsection
 
 
 
@@ -19,21 +28,33 @@
 
           <div class="col-sm-12 col-md-8 mt-4 ">
 
-            <div class="box-panel pt-2">
+            <div class="box-panel">
+
+              <h2>Create Your Pool</h2>
+              <p>What people say about your pool just post and leave to members</p>
+              <hr>
               <!-- form login -->
-              <form class="" method="POST" action="{{ route('user.update.question') }}">
+              <form class="margin-top-40" method="POST" action="{{ route('user.store.pool') }}">
                 @csrf
-                <input type="hidden" name="id" value="{{ $id }}">
                 <div class="form-group">
-                  <label>Question Title</label>
-                  <input type="text" name="title" value="{{ $question->title }}" class="form-control" required="">
+                  <label>Pool Title</label>
+                  <input type="text" name="title" placeholder="Title" class="form-control" required="">
                 </div>
-                {{-- CATEGORIES --}}
+
+                <div class="form-group">
+                  <label>Pool Options (double click on options to remove added options)</label>
+                  <input type="text" name="option[]" class="form-control option-field" required="">
+                  <input type="text" name="option[]" class="form-control option-field" required="">
+                  <div class="append-fields"></div>
+                  <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-success btn-append-fields">Add option</button>
+                  </div>
+                </div>
                 <div class="form-group">
                     <label>Category</label>
                     <select class="questions-category form-control dynamic" id="category"  data-dependent="sub_category" name="category" style="height: 55px">
-                        <option selected="" value="{{ $question->category }}" hidden="">{{ $question->category }}</option>
-                       @foreach (categories() as $data)
+                     <option selected hidden>Select Category</option>
+                      @foreach (categories() as $data)
                          <option value="{{ $data->category }}">{{ $data->category }}</option>
                      @endforeach
                     </select>
@@ -41,23 +62,29 @@
                   <div class="form-group">
                       <label>Sub Category</label>
                       <select class="questions-category form-control" id="sub_category"  name="sub_category" style="height: 55px">
-                        <option selected="" value="{{ $question->sub_category }}" hidden="">{{ $question->sub_category }}</option>
+                          <option value="" hidden selected>Select Sub Category</option>
                       </select>
                     </div>
                     {{ csrf_field() }}
-                    {{-- END CATEGORIES  --}}
+
+
                 <div class="form-group">
                   <label>Tags</label>
-
-                  <input type="text" id="tags" value="{{ $question->tags }}" name="tags" class="form-control" data-role="tagsinput" required="">
+                  <input type="text" id="tags" placeholder="nature, beauty, health" name="tags" class="form-control" data-role="tagsinput" required="">
                 </div>
 
                 <div class="form-group">
-                  <label>Question Detials</label>
-                  <textarea cols="12" rows="12" id="message" name="detail" class="form-control" required="">{{ $question->detail }}</textarea>
+                  <label>Pool End Time</label>
+                  <input type="datetime-local" name="ended_at" class="form-control" required="">
                 </div>
 
-                <button type="submit" class="btn btn-primary pull-right">Save changes </button>
+                <div class="form-group text-right mb-0">
+                  <input type="checkbox" name="is_anonymous" value="1">
+                  <label>Post anonymously</label>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary pull-right">Publish Your Pool</button>
 
               </form>
               <!-- form login -->
@@ -76,8 +103,22 @@
     <!-- =-=-=-=-=-=-= Post QuestionEnd =-=-=-=-=-=-= -->
   </div>
 @endsection
+
+
+
 @section('js')
-{{-- CATEGORIES AJAX --}}
+<script>
+  $( ".btn-append-fields" ).click(function() {
+
+    $('.append-fields').append('<input type="text" name="option[]" class="form-control option-field appended-fields" required="">');
+
+  });
+
+  $(document).on('dblclick', '.appended-fields', function() {
+    $(this).remove();
+  });
+
+</script>
 <script>
     $(document).ready(function(){
      $('.dynamic').change(function(){
@@ -104,8 +145,8 @@
       $('#sub_category').val('');
      });
 
+
+
     });
     </script>
-
 @endsection
-

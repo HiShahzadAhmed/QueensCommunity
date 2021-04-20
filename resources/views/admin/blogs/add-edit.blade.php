@@ -65,6 +65,7 @@
                                             <option value="{{ $blog->category }}" hidden>{{ $blog->category }}</option>
                                             @endif
                                             @foreach (categories() as $data)
+                                            <option hidden>Select Category</option>
                                             <option value="{{ $data->category }}">{{ $data->category }}</option>
                                             @endforeach
                                         </select>
