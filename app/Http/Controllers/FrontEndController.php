@@ -71,6 +71,7 @@ class FrontEndController extends Controller
     }
 
     public function load_data(Request $request){
+
         if($request->ajax())
         {
          if($request->id > 0)
@@ -234,4 +235,6 @@ class FrontEndController extends Controller
          public function viewHangout(){
             return view('front.hangout');
         }
+
+
 }

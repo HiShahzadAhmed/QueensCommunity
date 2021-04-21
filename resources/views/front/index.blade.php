@@ -10,8 +10,8 @@
     <div class="search-area container">
         <h3 class="search-title">{{$setting['banner_heading'] ?? ''}}</h3>
         <p class="search-tag-line">{{$setting['banner_description'] ?? ''}}</p>
-        <form autocomplete="off" method="get" class="search-form clearfix" id="search-form">
-            <input type="text" title="* Please enter a search term!" placeholder="Type your search terms here" class="search-term " autocomplete="off">
+        <form autocomplete="off" method="get" action="{{ route('search.form') }}" class="search-form clearfix" id="search-form">
+            <input type="text" title="* Please enter a search term!" name="q"  placeholder="Type your search terms here" class="search-term " autocomplete="off">
             <input type="submit" value="Search" class="search-btn">
         </form>
     </div>
@@ -282,7 +282,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach                
+                @endforeach
             </div>
             <!-- Row End -->
             <!-- Pagination View More -->
