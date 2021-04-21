@@ -13,6 +13,16 @@ require __DIR__.'/auth.php';
 
 Route::get('/', 'FrontEndController@index')->name('index');
 
+
+Route::get('/search/{txtSearch}', 'SearchController@makeSearch')->name('make.search');
+Route::get('/category/{type}/{keyword?}', 'SearchController@searchCategory')->name('search.category');
+
+
+Route::get('/blog/{$slug}', 'FrontEndController@blogDetail')->name('blog.detail');
+
+
+
+
 Route::get('/questions', 'FrontEndController@viewQuestion')->name('view.question');
 Route::post('/load/question', 'FrontEndController@load_data')->name('loadmore.load_data');
 
@@ -112,11 +122,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')-
 
 
     Route::resources([
-        'roles'     => 'RoleController',
-        'teams'     => 'TeamController',
-        'blogs'     => 'BlogController',
-        'questions' => 'QuestionController',
-        'videos'    => 'VideoController',
+        'roles'         => 'RoleController',
+        'teams'         => 'TeamController',
+        'blogs'         => 'BlogController',
+        'questions'     => 'QuestionController',
+        'videos'        => 'VideoController',
         'categories'    => 'CategoryController',
     ]);
     Route::get('teams/remove/{id?}', 'TeamController@remove')->name('teams.remove');

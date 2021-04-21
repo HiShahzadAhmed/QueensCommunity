@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
             $permission = Permission::create(['name' => 'browse_videos']);
             $permission = Permission::create(['name' => 'browse_blogs']);
             $permission = Permission::create(['name' => 'browse_questions']);
+            $permission = Permission::create(['name' => 'browse_category']);
 
 
 

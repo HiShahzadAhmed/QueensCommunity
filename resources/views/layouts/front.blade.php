@@ -47,11 +47,28 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Fashion</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Lifestyle</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Wedding</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Wellness</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">ENtertainment</a></li>
+
+				@foreach(categories() as $category)
+
+					@if($category->sub_category == '')
+						<li class="nav-item"><a class="nav-link" href="{{ route('search.category', ['type' => 'main', 'keyword' => $category->category]) }}">{{ $category->category }}</a></li>
+					@else
+
+					<li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          {{ $category->category }}
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				          @foreach(subcategories($category->category) as $sub)
+						    	<a class="dropdown-item" href="{{ route('search.category', ['type' => 'sub', 'keyword' => $sub]) }}">{{ $sub }}</a>
+						    @endforeach
+				        </div>
+				      </li>
+
+					@endif
+
+				@endforeach
+
 			</ul>
 			<span class="navbar-text">
 				@if(!Auth::Check())

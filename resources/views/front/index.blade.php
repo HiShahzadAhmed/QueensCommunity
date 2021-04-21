@@ -261,69 +261,28 @@
                 <h2>Latest Blogs</h2>
                 <div class="slices"><span class="slice"></span><span class="slice"></span><span class="slice"></span>
                 </div>
-                <p>Cras varius purus in tempus porttitor ut dapibus efficitur sagittis cras vitae lacus metus nunc vulputate facilisis nisi
-                    <br>eu lobortis erat consequat ut. Aliquam et justo ante. Nam a cursus velit</p>
             </div>
             <!-- End title-section -->
             <!-- Row -->
             <div class="row">
-                <!-- Blog Grid -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="blog-grid">
-                        <div class="blog-image">
-                            <img alt="blog-image1" class="img-responsive" src="https://templates.scriptsbundle.com/knowledge/demo/images/blog/1.jpg">
-                        </div>
-                        <div class="blog-content">
-                            <h5><a href="#">6 Summer-Friendly Moisturisers That Won't Make Your Skin Feel Sticky</a></h5>
-                            <p>We can make table scrollable by adding table-responsive class to it, but how can we loop it so that once the loop ends..</p>
-                        </div>
-                        <div class="blog-footer">
-                            <ul class="like-comment">
-                                <li><a href="#"><i class="fa fa-heart"></i>23</a>
-                                </li>
-                            </ul> <a href="#" class="more-btn pull-right"><i class="fa fa-long-arrow-right"></i>READ</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Blog Grid -->
-                <!-- Blog Grid -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="blog-grid">
-                        <div class="blog-image">
-                            <img alt="blog-image1" class="img-responsive" src="https://templates.scriptsbundle.com/knowledge/demo/images/blog/1.jpg">
-                        </div>
-                        <div class="blog-content">
-                            <h5><a href="#">6 Summer-Friendly Moisturisers That Won't Make Your Skin Feel Sticky</a></h5>
-                            <p>We can make table scrollable by adding table-responsive class to it, but how can we loop it so that once the loop ends..</p>
-                        </div>
-                        <div class="blog-footer">
-                            <ul class="like-comment">
-                                <li><a href="#"><i class="fa fa-heart"></i>23</a>
-                                </li>
-                            </ul> <a href="#" class="more-btn pull-right"><i class="fa fa-long-arrow-right"></i>READ</a>
+                @foreach($blogs as $blog)
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="blog-grid card-help">
+                            <div class="blog-image">
+                                <img alt="blog-image1" class="img-responsive" src="{{ asset($blog->featured_image) }}" style="min-height: 250px;">
+                            </div>
+                            <div class="blog-content">
+                                <h5><a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a></h5>
+                                <p>{{ Str::Limit($blog->meta_description, 100) }}</p>
+                            </div>
+                            <div class="blog-footer">
+                                <ul class="like-comment">
+                                    </li>
+                                </ul> <a href="{{ route('blog.detail', $blog->slug) }}" class="more-btn pull-right"><i class="fa fa-long-arrow-right"></i>READ</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Blog Grid -->
-                <!-- Blog Grid -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="blog-grid">
-                        <div class="blog-image">
-                            <img alt="blog-image1" class="img-responsive" src="https://templates.scriptsbundle.com/knowledge/demo/images/blog/1.jpg">
-                        </div>
-                        <div class="blog-content">
-                            <h5><a href="#">6 Summer-Friendly Moisturisers That Won't Make Your Skin Feel Sticky</a></h5>
-                            <p>We can make table scrollable by adding table-responsive class to it, but how can we loop it so that once the loop ends..</p>
-                        </div>
-                        <div class="blog-footer">
-                            <ul class="like-comment">
-                                <li><a href="#"><i class="fa fa-heart"></i>23</a>
-                                </li>
-                            </ul> <a href="#" class="more-btn pull-right"><i class="fa fa-long-arrow-right"></i>READ</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Blog Grid -->
+                @endforeach                
             </div>
             <!-- Row End -->
             <!-- Pagination View More -->

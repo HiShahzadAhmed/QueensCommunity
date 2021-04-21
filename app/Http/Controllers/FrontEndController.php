@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Video;
 use App\Models\Category;
 use Auth;
+use Spatie\Permission\Models\Permission;
 use Str;
 use App\Models\Users;
 
@@ -18,6 +19,7 @@ class FrontEndController extends Controller
     public function index()
     {
 
+        // Permission::create(['name' => 'browse_category']);
 
     	$questions = Question::latest()->take(6)->get();
         $pools = Pool::latest()->take(6)->get();

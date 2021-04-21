@@ -34,9 +34,15 @@ use Illuminate\Support\Facades\Mail;
     }
 
     function categories(){
-        return Category::select('category')
-        ->groupBy('category')
-        ->get();
+        return Category::groupBy('category')->get();
     }
+    
+    function subCategories($category){
+
+        return Category::whereCategory($category)->get()->pluck('sub_category');
+    }
+
+
+
 
 ?>
