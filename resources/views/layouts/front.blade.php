@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
 		<title>@yield('title') | Queen's Community</title>
+    	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset($setting['favicon'] ?? '')  }}">
 
 		<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -26,9 +26,9 @@
 					<ul class="top-nav text-center">
 						<li><a href="{{ route('view.blogs') }}">Read |</a></li>
 						<li class="hidden-xs"><a href="{{ route('view.videos') }}">Watch |</a></li>
-						<li  class="hidden-xs"><a href="{{ route('view.hangout') }}">Hangout |</a></li>
-						@if(!Auth::check())
-							<li  class="hidden-xs"><a href="{{ route('login') }}">Login</a></li>
+						<li  class="hidden-xs"><a href="{{ route('view.hangout') }}">Hangout</a></li>
+						@if(Auth::check())
+							<li  class="hidden-xs"><a href="{{ route('logout') }}">| Logout</a></li>
 						@endif
 					</ul>
 				</div>
@@ -71,11 +71,7 @@
 
 			</ul>
 			<span class="navbar-text">
-				@if(!Auth::Check())
-				<a href="{{ route('user.post.question') }}" class="btn btn-primary btn-sm navbar-btn text-white">Post Question</a>
-				@else
-				<a href="{{ route('user.dashboard') }}" class="btn btn-primary btn-sm navbar-btn text-white">Dashboard</a>
-				@endif
+				<a href="#" class="btn btn-primary btn-sm navbar-btn text-white">PWL</a>
 			</span>
 		</div>
 	</nav>
@@ -106,10 +102,10 @@
 		<h2>Company</h2>
 		<div class="footer-widget links-widget">
 			<ul>
-				<li><a href="#">Read</a></li>
-				<li><a href="#">Watch</a></li>
-				<li><a href="#">Questions</a></li>
-				<li><a href="#">Polls</a></li>
+				<li><a href="{{ route('view.blogs') }}">Read</a></li>
+				<li><a href="{{ route('view.videos') }}">Watch</a></li>
+				<li><a href="{{ route('view.question') }}">Questions</a></li>
+				<li><a href="{{ route('view.polls') }}">Polls</a></li>
 			</ul>
 		</div>
 	</div>
@@ -124,10 +120,10 @@
 			<div class="footer-widget links-widget">
 				<h2>Explore</h2>
 				<ul>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact Us</a></li>
-					<li><a href="#">ZachaBacha.com</a></li>
-					<li><a href="#">NextMamas.com</a></li>
+					<li><a href="{{ route('about') }}">About</a></li>
+					<li><a href="{{ route('contact') }}">Contact Us</a></li>
+					<li><a href="https://zachabacha.com/" target="_blank">ZachaBacha.com</a></li>
+					<li><a href="https://nextmamas.com/" target="_blank">NextMamas.com</a></li>
 				</ul>
 			</div>
 		</div>
@@ -162,10 +158,34 @@
 <div class="footer-copyright">
 <div class="auto-container clearfix">
 <!--Copyright-->
-<div class="copyright text-center">Copyright {{ date('Y') }} &copy; <a target="_blank" href="#">Queen's Community</a> {{ $setting['copyright'] ?? '' }}</div>
+<div class="copyright text-center">Copyright {{ date('Y') }} &copy; <a target="_blank" href="{{ route('index') }}">Queen's Community</a> {{ $setting['copyright'] ?? '' }}</div>
 </div>
 </div>
 </footer>
+
+        <a class="quiz-float" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="fas fa-plus my-float"></i>
+        </a>
+
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">What you want to Post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <a href="" class="btn btn-sm btn-block btn-site btn-quiz"><i class="fas fa-poll"></i> Create a poll</a>
+        <a href="" class="btn btn-sm btn-block btn-site btn-quiz"><i class="fas fa-question-circle"></i> Post a question</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
 {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

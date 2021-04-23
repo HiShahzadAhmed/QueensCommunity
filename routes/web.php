@@ -12,13 +12,17 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/', 'FrontEndController@index')->name('index');
+Route::get('/about', 'FrontEndController@about')->name('about');
+
+Route::get('/contact', 'FrontEndController@contact')->name('contact');
+Route::post('/submit/contact', 'InquiryController@submitInquiry')->name('submit.inquiry');
 
 
 Route::get('/search/{txtSearch}', 'SearchController@makeSearch')->name('make.search');
 Route::get('/category/{type}/{keyword?}', 'SearchController@searchCategory')->name('search.category');
 
 
-Route::get('/blog/{$slug}', 'FrontEndController@blogDetail')->name('blog.detail');
+Route::get('/blog/{slug}', 'FrontEndController@blogDetail')->name('blog.detail');
 
 
 
@@ -134,6 +138,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')-
 
     Route::get('settings/', 'SettingController@index')->name('setting.index');
     Route::post('settings/update', 'SettingController@update')->name('setting.update');
+
+
+
+    Route::get('inquiries', 'InquiryController@inquiries')->name('inquiries');
+    Route::get('inquiry/update/{id}', 'InquiryController@inquiryUpdate')->name('inquiry.update');
 
 
 });

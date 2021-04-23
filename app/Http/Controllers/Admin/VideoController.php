@@ -48,6 +48,7 @@ class VideoController extends Controller
 
         $video = new Video();
         $video->title = $request->title;
+        $video->slug = Str::Slug($request->title);
         $video->url   = $request->url;
         $video->description   = $request->description;
         $video->category   = $request->category;
@@ -97,12 +98,13 @@ class VideoController extends Controller
 
 
         $video = Video::find($id);
-        $video->title = $request->title;
-        $video->url   = $request->url;
-        $video->description   = $request->description;
-        $video->category   = $request->category;
-        $video->sub_category   = $request->sub_category;
-        $video->user_id = Auth::Id();
+        $video->title           = $request->title;
+        $video->slug            = Str::Slug($request->title);
+        $video->url             = $request->url;
+        $video->description     = $request->description;
+        $video->category        = $request->category;
+        $video->sub_category    = $request->sub_category;
+        $video->user_id         = Auth::Id();
         $video->save();
         return redirect()->route('admin.videos.index')->with('message', 'Video has been Updated!');
     }

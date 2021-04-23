@@ -50,13 +50,13 @@
                         <div class="card bg-authentication rounded-0 mb-0">
                             <div class="row m-0">
                                 <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                                    <h2 style="font-weight: bold; font-size:2.4vw;">QueensCommunity</h2>
+                                    <img style="width: 360px;" alt="" src="{{ asset($setting['logo'] ?? '')  }}">
                                 </div>
                                 <div class="col-lg-6 col-12 p-0">
                                     <div class="card rounded-0 mb-0 px-2">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
-                                                <h4 class="mb-0">Hello Queens Community Team</h4>
+                                                <h4 class="mb-0">Hello Queens Community</h4>
                                             </div>
                                         </div>
                                         <p class="px-2">Welcome, please login to your account.</p>

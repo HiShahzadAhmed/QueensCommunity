@@ -234,4 +234,32 @@ class FrontEndController extends Controller
          public function viewHangout(){
             return view('front.hangout');
         }
+
+
+        public function blogDetail($slug)
+        {
+            $blog = Blog::whereSlug($slug)->first();
+            $blogs = Blog::latest()->take(8)->get();
+
+            return view('front.blog_detail', get_defined_vars());
+
+        }
+
+
+
+
+    public function about()
+    {
+        return view('front.about', get_defined_vars());
+    }
+    public function contact()
+    {
+        return view('front.contact', get_defined_vars());
+    }
+    
+
+
+
+
+
 }

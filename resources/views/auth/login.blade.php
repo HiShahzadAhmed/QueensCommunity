@@ -104,6 +104,7 @@ var input = document.querySelector("#phone"),
 
 var iti = window.intlTelInput(input, {
   nationalMode: true,
+  initialCountry: "pk",
   utilsScript: "https://intl-tel-input.com/node_modules/intl-tel-input/build/js/utils.js"
 });
 

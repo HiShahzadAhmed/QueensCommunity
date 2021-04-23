@@ -73,10 +73,23 @@ class AccountController extends Controller
     	{
 
             $is_role = 1;
-    		$code = 1234;
-    		// $code = mt_rand(0000, 9999);
-    		// $this->sendMessage("Your QueensQommunity account PIN is: ".$code, $request->phone);
-    		Session::Put('pin', $code);
+    		// $code = 1234;
+    		$code = mt_rand(0000, 9999);
+
+    		$this->sendMessage("Your QueensCommunity account PIN is: ".$code, $request->phone);
+    		
+
+            // try 
+            // {
+            //     $this->sendMessage("Your QueensCommunity account PIN is: ".$code, $request->phone);
+            // } 
+            // catch (\Exception $e) 
+            // {
+            //     $code = 1234;
+            // }
+            
+
+            Session::Put('pin', $code);
 
     		return view('auth.login', get_defined_vars());
 

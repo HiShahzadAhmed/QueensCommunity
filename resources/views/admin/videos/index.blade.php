@@ -19,7 +19,6 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>URL</th>
-                                        <th>Description</th>
                                         <th>Created</th>
                                         <th class="text-right">Action</th>
                                     </tr>
@@ -29,7 +28,6 @@
                                     <tr>
                                         <td>{{ $video->title ?? 'N/A' }}</td>
                                         <td><a href="https://www.youtube.com/watch?v={{ $video->url ?? 'N/A' }}" target="_blank">Video URL</a></td>
-                                        <td>{{ $video->description ?? 'N/A' }}</td>
                                         <td>{{ $video->updated_at->diffForHumans() ?? 'N/A' }}</td>
                                         <td>
                                             <div class="btn-group pull-right">

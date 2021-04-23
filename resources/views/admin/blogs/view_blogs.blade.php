@@ -11,8 +11,6 @@
                 <h2>All Blogs</h2>
                 <div class="slices"><span class="slice"></span><span class="slice"></span><span class="slice"></span>
                 </div>
-                <p>Cras varius purus in tempus porttitor ut dapibus efficitur sagittis cras vitae lacus metus nunc vulputate facilisis nisi
-                    <br>eu lobortis erat consequat ut. Aliquam et justo ante. Nam a cursus velit</p>
             </div>
             <!-- End title-section -->
             {{ csrf_field() }}

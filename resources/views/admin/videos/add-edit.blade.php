@@ -84,7 +84,7 @@
                                 <div class="col-xl-12 col-md-12 col-12 mb-1">
                                     <fieldset class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" placeholder="Description" name="description" required>{{ $video->description ?? '' }}</textarea>
+                                        <textarea class="form-control" id="description" name="description">{{ $video->description ?? 'My new description' }}</textarea>
                                     </fieldset>
                                 </div>
 

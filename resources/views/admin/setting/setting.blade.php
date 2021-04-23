@@ -45,6 +45,13 @@
                                             <input type="file" class=" dropify dropify-event" id="fileChooser" name="logo" data-default-file="{{ asset($setting['logo'] ?? '')  }}">
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Banner Background</label>
+                                            <input type="file" class=" dropify dropify-event" id="fileChooser" name="banner_bg" data-default-file="{{ asset($setting['banner_bg'] ?? '')  }}">
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

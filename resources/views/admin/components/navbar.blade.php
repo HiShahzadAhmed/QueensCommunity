@@ -12,16 +12,15 @@
 
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ Auth::User()->name ?? 'Administrator' }}</span><span class="user-status text-success">{{ Auth::User()->roles[0]->name ?? '' }}</span></div><span><img class="round" src="{{ asset('uploads/users/default.png') }}" alt="avatar" height="40" width="40"></span>
+                            <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">
+                                {{ Auth::User()->name ?? 'Administrator' }}</span>
+                                <span class="user-status text-success">{{ Auth::User()->roles[0]->name ?? '' }}</span></div>
+                                <span><img class="round" 
+                                src="{{ asset(Auth::User()->avatar ?? '') }}" alt="avatar" height="40" width="40"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="feather icon-user"></i>Profile</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();"><i class="feather icon-power"></i>{{ __('Logout') }}</a>
-                                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
+                            <a class="dropdown-item" href="{{ route('logout') }}"><i class="feather icon-power"></i>{{ __('Logout') }}</a>
                         </div>
                     </li>
                 </ul>
