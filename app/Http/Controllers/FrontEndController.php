@@ -71,6 +71,7 @@ class FrontEndController extends Controller
     }
 
     public function load_data(Request $request){
+
         if($request->ajax())
         {
          if($request->id > 0)
@@ -245,21 +246,13 @@ class FrontEndController extends Controller
 
         }
 
-
-
-
-    public function about()
-    {
-        return view('front.about', get_defined_vars());
-    }
-    public function contact()
-    {
-        return view('front.contact', get_defined_vars());
-    }
-    
-
-
-
-
-
+            public function about()
+            {
+                return view('front.about', get_defined_vars());
+            }
+            public function contact()
+            {
+                return view('front.contact', get_defined_vars());
+            }
+            
 }

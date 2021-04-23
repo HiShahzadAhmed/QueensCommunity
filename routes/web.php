@@ -21,6 +21,9 @@ Route::post('/submit/contact', 'InquiryController@submitInquiry')->name('submit.
 Route::get('/search/{txtSearch}', 'SearchController@makeSearch')->name('make.search');
 Route::get('/category/{type}/{keyword?}', 'SearchController@searchCategory')->name('search.category');
 
+Route::get('/search', 'SearchController@SearchData')->name('search.form');
+Route::post('/load/search', 'SearchController@loadSearchData')->name('loadmore.load_search');
+Route::post('/more/search', 'SearchController@loadData')->name('loadmore.search_blogs_videos');
 
 Route::get('/blog/{slug}', 'FrontEndController@blogDetail')->name('blog.detail');
 
@@ -87,12 +90,6 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role.check'])->namesp
 
 
 });
-
-
-
-
-
-
 
 
 
