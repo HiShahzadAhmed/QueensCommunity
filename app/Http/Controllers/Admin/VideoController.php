@@ -43,6 +43,7 @@ class VideoController extends Controller
             'title'=>'required',
             'url'=>'required',
             'description'=>'required',
+            'thumbnail'=>'required',
           ]);
 
 
@@ -54,6 +55,7 @@ class VideoController extends Controller
         $video->category   = $request->category;
         $video->sub_category   = $request->sub_category;
         $video->user_id = Auth::Id();
+        $video->thumbnail = uploadAvatar($request->thumbnail, 'uploads/videos');
         $video->save();
         return redirect()->route('admin.videos.index')->with('message', 'Video has been created!');
     }
@@ -105,6 +107,12 @@ class VideoController extends Controller
         $video->category        = $request->category;
         $video->sub_category    = $request->sub_category;
         $video->user_id         = Auth::Id();
+
+        if(isset($request->thumbnail))
+        {
+            $video->thumbnail = uploadAvatar($request->thumbnail, 'uploads/videos');   
+        }
+
         $video->save();
         return redirect()->route('admin.videos.index')->with('message', 'Video has been Updated!');
     }

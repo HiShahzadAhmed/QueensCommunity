@@ -88,6 +88,12 @@
                                     </fieldset>
                                 </div>
 
+                                <div class="col-xl-12 mb-2">
+                                        <label>Image</label>
+                                    <input type="file" name="thumbnail" class="form-control dropify" @if(!isset($video->thumbnail)) required @endif data-default-file="{{asset($video->thumbnail ?? '')}}">
+                                </div>
+
+
                                 <div class="col-xl-12 col-md-12 col-12 mb-1">
                                     <fieldset class="form-group pull-right">
                                         <button class="btn btn-relief-primary" type="submit">Save Changes</button>

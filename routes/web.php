@@ -14,6 +14,10 @@ require __DIR__.'/auth.php';
 Route::get('/', 'FrontEndController@index')->name('index');
 Route::get('/about', 'FrontEndController@about')->name('about');
 
+Route::get('/power-queens-list', 'FrontEndController@pwl')->name('pwl');
+Route::get('/pql/{id}/{slug}', 'FrontEndController@pwlDetail')->name('pwl.detail');
+
+
 Route::get('/contact', 'FrontEndController@contact')->name('contact');
 Route::post('/submit/contact', 'InquiryController@submitInquiry')->name('submit.inquiry');
 
@@ -26,6 +30,9 @@ Route::post('/load/search', 'SearchController@loadSearchData')->name('loadmore.l
 Route::post('/more/search', 'SearchController@loadData')->name('loadmore.search_blogs_videos');
 
 Route::get('/blog/{slug}', 'FrontEndController@blogDetail')->name('blog.detail');
+
+
+Route::get('/video/{slug}', 'FrontEndController@videoDetail')->name('video.detail');
 
 
 
@@ -130,6 +137,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')-
         'videos'        => 'VideoController',
         'categories'    => 'CategoryController',
         'pwls'          => 'PwlController',
+        'products'      => 'ProductController',
     ]);
     Route::get('teams/remove/{id?}', 'TeamController@remove')->name('teams.remove');
 

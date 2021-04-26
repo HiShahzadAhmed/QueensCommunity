@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/semi-dark-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/dropify/css/dropify.min.css') }}">
     <!-- BEGIN: Page CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/core/colors/palette-gradient.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/custom.css') }}">
@@ -75,7 +76,7 @@
     <script src="{{ asset('admin/vendors/js/tables/datatable/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('admin/vendors/js/tables/datatable/datatables.checkboxes.min.js') }}"></script>
     <script src="{{asset('admin/dropify/js/dropify.min.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
     <script src="{{ asset('admin/vendors/js/extensions/tether.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/app-menu.js') }}"></script>
@@ -131,6 +132,11 @@
                     console.error(error);
                 });
         });
+
+        $(document).ready(function() {
+            $('.select2-option').select2();
+        });
+
     </script>
 
     @yield('js')

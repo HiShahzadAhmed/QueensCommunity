@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration
             $table->float('price', 8, 2)->nullable()->default(0);
             $table->enum('position', ['bottom', 'sidebar'])->default('bottom');
             $table->enum('status', ['active', 'pending', 'cancelled'])->default('active');
+            $table->string('blog_id')->nullable();
+            $table->string('video_id')->nullable();
             $table->timestamps();
         });
     }

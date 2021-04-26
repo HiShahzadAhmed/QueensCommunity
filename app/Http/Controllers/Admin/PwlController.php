@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pwl;
+use Str;
 
 class PwlController extends Controller
 {
@@ -21,7 +22,7 @@ class PwlController extends Controller
      */
     public function create()
     {
-        return view('admin.videos.add-edit', get_defined_vars());
+        return view('admin.pwl.add-edit', get_defined_vars());
     }
 
     /**
@@ -33,22 +34,24 @@ class PwlController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name'=>'required',
             'title'=>'required',
-            'url'=>'required',
-            'description'=>'required',
+            'detail'=>'required',
+            'avatar'=>'required',
+            'cover_photo'=>'required',
           ]);
 
 
-        $video = new Video();
-        $video->title = $request->title;
-        $video->slug = Str::Slug($request->title);
-        $video->url   = $request->url;
-        $video->description   = $request->description;
-        $video->category   = $request->category;
-        $video->sub_category   = $request->sub_category;
-        $video->user_id = Auth::Id();
-        $video->save();
-        return redirect()->route('admin.videos.index')->with('message', 'Video has been created!');
+        $pwl = new Pwl();
+        $pwl->name = $request->name;
+        $pwl->title   = $request->title;
+        $pwl->slug = 'power-queens-list-'.Str::Slug($request->name);
+		$pwl->uuid 			= date('ymdhis');
+        $pwl->detail   = $request->detail;
+        $pwl->avatar = uploadAvatar($request->avatar, 'uploads/pwls');
+        $pwl->cover_photo = uploadAvatar($request->cover_photo, 'uploads/pwls');
+        $pwl->save();
+        return redirect()->route('admin.pwls.index')->with('message', 'Pwl has been added!');
     }
 
     /**
@@ -70,8 +73,8 @@ class PwlController extends Controller
      */
     public function edit($id)
     {
-        $video = Video::find($id);
-        return view('admin.videos.add-edit', get_defined_vars());
+        $pwl = Pwl::find($id);
+        return view('admin.pwl.add-edit', get_defined_vars());
     }
 
     /**
@@ -84,22 +87,29 @@ class PwlController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'name'=>'required',
             'title'=>'required',
-            'url'=>'required',
-            'description'=>'required',
+            'detail'=>'required',
           ]);
 
 
-        $video = Video::find($id);
-        $video->title           = $request->title;
-        $video->slug            = Str::Slug($request->title);
-        $video->url             = $request->url;
-        $video->description     = $request->description;
-        $video->category        = $request->category;
-        $video->sub_category    = $request->sub_category;
-        $video->user_id         = Auth::Id();
-        $video->save();
-        return redirect()->route('admin.videos.index')->with('message', 'Video has been Updated!');
+        $pwl = Pwl::find($id);
+        $pwl->name = $request->name;
+        $pwl->title   = $request->title;
+        $pwl->detail   = $request->detail;
+
+        if(isset($request->avatar))
+        {
+            $pwl->avatar = uploadAvatar($request->avatar, 'uploads/pwls');
+        }
+
+        if(isset($request->cover_photo))
+        {
+            $pwl->cover_photo = uploadAvatar($request->cover_photo, 'uploads/pwls');
+        }
+
+        $pwl->save();
+        return redirect()->route('admin.pwls.index')->with('message', 'Pwl has been updated!');
     }
 
     /**
@@ -110,7 +120,7 @@ class PwlController extends Controller
      */
     public function destroy($id)
     {
-        Video::find($id)->delete();
-        return redirect()->back()->with('message', 'Video has been deleted.');
+        Pwl::find($id)->delete();
+        return redirect()->back()->with('message', 'Pwl has been deleted.');
     }
 }

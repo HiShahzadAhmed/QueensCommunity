@@ -2,6 +2,8 @@
 use Carbon\Carbon;
 use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Blog;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -42,6 +44,16 @@ use Illuminate\Support\Facades\Mail;
         return Category::whereCategory($category)->get()->pluck('sub_category');
     }
 
+    function blogs()
+    {
+        return Blog::all();
+    }
+
+    function videos()
+    {
+        return Video::all();
+    }
+    
 
 
 
