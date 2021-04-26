@@ -33,7 +33,7 @@ Route::get('/blog/{slug}', 'FrontEndController@blogDetail')->name('blog.detail')
 Route::get('/questions', 'FrontEndController@viewQuestion')->name('view.question');
 Route::post('/load/question', 'FrontEndController@load_data')->name('loadmore.load_data');
 
-Route::get('/pools', 'FrontEndController@viewPolls')->name('view.polls');
+Route::get('/pool', 'FrontEndController@viewPolls')->name('view.polls');
 Route::post('/load/pools', 'FrontEndController@loadPools')->name('loadmore.load_pools');
 
 Route::get('/videos', 'FrontEndController@viewVideos')->name('view.videos');

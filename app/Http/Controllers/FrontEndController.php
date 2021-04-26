@@ -254,5 +254,5 @@ class FrontEndController extends Controller
             {
                 return view('front.contact', get_defined_vars());
             }
-            
+
 }

@@ -4,118 +4,75 @@
 <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
 <section class="white padding-bottom-80">
     <div class="container">
-        <div class="row">
+        <div class="panel-body">
+            <div class="tab-content">
+                <!-- Question Listing -->
+                    <div class="row">
+                            <div class="col-md-12">
+                            <!-- Question Listing -->
+                                <div class="listing-grid card-help">
 
-            <!-- Content Area Bar -->
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <!-- title-section -->
-            <div class="main-heading margin-top-30 text-center">
-                <h2>Questions & Pools</h2>
-                <div class="slices"><span class="slice"></span><span class="slice"></span><span class="slice"></span>
-                </div>
-            </div>
-            <!-- End title-section -->
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <!-- Question Listing -->
-                        {{ csrf_field() }}
-                        <div class="" id="get_search_data">
+                                        <div class="card-body p-0">
+                                          <table class="table table-striped projects">
+                                              <tbody>
+                                                @forelse($questions as $question)
+                                                  <tr>
+                                                    <td><a target="_blank" href="{{ route('question.detail', ['id' => $question->qid, 'slug' => $question->slug]) }}">{{ $question->title }}  <span class="badge badge-info">Question</span></a></td>
+                                                </tr>
+                                                @empty
+                                                <div class="text-center">
+                                                    <h3 class="alert alert-warning">Ahhh! No Questions has been Found.</h3>
+                                                </div>
+                                                @endforelse
+                                                  <!-- Blogs -->
+                                                @forelse($blogs as $blog)
+                                                <tr>
+                                                  <td><a target="_blank" href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}  <span class="badge badge-info">Blog</span></a></td>
+                                                </tr>
+                                                @empty
+                                                <div class="text-center">
+                                                    <h3 class="alert alert-warning">Ahhh! No Blog has been Found.</h3>
+                                                </div>
+                                                @endforelse
+                                                  <!-- End Blogs -->
+                                                <!-- Pools -->
+                                                @forelse($pools as $pool)
+                                                <tr>
+                                                  <td><a target="_blank" href="{{ route('pool.detail', ['id' => $pool->pid, 'slug' => $pool->slug]) }}">{{ $pool->title }}  <span class="badge badge-info">Pools</span></a></td>
+                                                </tr>
+                                                @empty
+                                                <div class="text-center">
+                                                    <h3 class="alert alert-warning">Ahhh! No Pools has been Found.</h3>
+                                                </div>
+                                                @endforelse
+                                                  <!-- End Pools -->
+                                                <!-- Videos -->
+                                                @forelse($videos as $video)
+                                                <tr>
+                                                  <td><a target="_blank" href="">{{ $video->title }}  <span class="badge badge-info">Video</span></a></td>
+                                                </tr>
+                                                @empty
+                                                <div class="text-center">
+                                                    <h3 class="alert alert-warning">Ahhh! No Video has been Found.</h3>
+                                                </div>
+                                                @endforelse
+                                                  <!-- End Videos -->
+                                              </tbody>
+                                          </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                      </div>
+                                      <!-- /.card -->
 
+                            <!-- Question Listing End -->
                         </div>
+
                     </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-
-            <!-- Content Area Bar -->
-
-    <!-- end container -->
-</section>
-<!-- =-=-=-=-=-=-= Blog & News =-=-=-=-=-=-= -->
-<section id="blog" class="custom-padding">
-    <div class="container">
-        <!-- title-section -->
-        <div class="main-heading text-center">
-            <h2> Videos & Blogs</h2>
-            <div class="slices"><span class="slice"></span><span class="slice"></span><span class="slice"></span>
-            </div>
-        </div>
-        <!-- End title-section -->
-        <!-- Row -->
-        {{ csrf_field() }}
-        <div class="" id="get_data">
-
-        </div>
-        <!-- Row End -->
 
     </div>
-    <!-- end container -->
+
 </section>
 
-
-
-@endsection
-@section('js')
-<script>
-    $(document).ready(function(){
-
-     var _token = $('input[name="_token"]').val();
-     var q = "{{ $request->q }}" ;
-     load_data('', _token);
-
-     function load_data(id="", _token)
-     {
-      $.ajax({
-       url:"{{ route('loadmore.load_search') }}",
-       method:"POST",
-       data:{id:id, q:q, _token:_token},
-       success:function(data)
-       {
-        $('#load_more_button').remove();
-        $('#get_search_data').append(data);
-       }
-      })
-     }
-
-     $(document).on('click', '#load_more_button', function(){
-      var id = $(this).data('id');
-      $('#load_more_button').html('<b>Loading...</b>');
-      load_data(id, _token);
-     });
-
-    });
-
-    </script>
-    {{-- FOr Video AND Blogs --}}
-    <script>
-    $(document).ready(function(){
-
-     var _token = $('input[name="_token"]').val();
-     var q = "{{ $request->q }}" ;
-     load_more_data('', _token);
-
-     function load_more_data(id="", _token)
-     {
-      $.ajax({
-       url:"{{ route('loadmore.search_blogs_videos') }}",
-       method:"POST",
-       data:{id:id, q:q, _token:_token},
-       success:function(data)
-       {
-        $('#load_more_data').remove();
-        $('#get_data').append(data);
-       }
-      })
-     }
-
-     $(document).on('click', '#load_more_data', function(){
-      var id = $(this).data('id');
-      $('#load_more_data').html('<b>Loading...</b>');
-      load_more_data(id, _token);
-     });
-
-    });
-    </script>
 
 
 @endsection
