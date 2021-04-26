@@ -41,6 +41,9 @@
 
             <li class="nav-item @routeis('admin.inquiries') active @endrouteis"><a href="{{ route('admin.inquiries') }}"><i class="feather icon-info"></i>Inquiries</a></li>
             
+            <li class="nav-item @routeis('admin.pwls.index') active @endrouteis"><a href="{{ route('admin.pwls.index') }}"><i class="feather icon-award"></i>Pwl</a></li>
+            
+
             <li class=" navigation-header"><span>Site Settings</span></li>
             <li class="nav-item @routeis('admin.setting.index') active @endrouteis"><a href="{{ route('admin.setting.index') }}"><i class="feather icon-settings"></i>Settings</a></li>
 

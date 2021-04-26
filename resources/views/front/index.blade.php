@@ -75,7 +75,7 @@
                 @foreach($videos as $video)
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="blog-grid card-help border-0">
-                        <iframe  src="https://www.youtube.com/embed/{{ $video->url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="disabled"  src="https://www.youtube.com/embed/{{ $video->url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div class="blog-content border-0">
                             <h5>{{ $video->title }}</h5>
                             <p>{{ Str::Limit($video->description, 80) }}</p>

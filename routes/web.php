@@ -129,6 +129,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')-
         'questions'     => 'QuestionController',
         'videos'        => 'VideoController',
         'categories'    => 'CategoryController',
+        'pwls'          => 'PwlController',
     ]);
     Route::get('teams/remove/{id?}', 'TeamController@remove')->name('teams.remove');
 
