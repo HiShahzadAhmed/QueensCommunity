@@ -18,6 +18,9 @@
             @can('browse_questions')
                 <li class="nav-item @routeis('admin.questions.index') active @endrouteis"><a href="{{ route('admin.questions.index') }}"><i class="feather icon-help-circle"></i>Questions</a></li>
             @endcan
+            @can('browse_questions')
+            <li class="nav-item @routeis('admin.pools.index') active @endrouteis"><a href="{{ route('admin.pools.index') }}"><i class="feather icon-help-circle"></i>Pools</a></li>
+           @endcan
 
             <li class=" navigation-header"><span>Others</span></li>
             <li class="nav-item"><a href=""><i class="feather icon-users"></i>Members</a></li>
@@ -40,9 +43,9 @@
 
 
             <li class="nav-item @routeis('admin.inquiries') active @endrouteis"><a href="{{ route('admin.inquiries') }}"><i class="feather icon-info"></i>Inquiries</a></li>
-            
+
             <li class="nav-item @routeis('admin.pwls.index') active @endrouteis"><a href="{{ route('admin.pwls.index') }}"><i class="feather icon-award"></i>Pwl</a></li>
-            
+
 
             <li class=" navigation-header"><span>Site Settings</span></li>
             <li class="nav-item @routeis('admin.setting.index') active @endrouteis"><a href="{{ route('admin.setting.index') }}"><i class="feather icon-settings"></i>Settings</a></li>

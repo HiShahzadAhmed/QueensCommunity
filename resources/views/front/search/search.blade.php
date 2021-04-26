@@ -49,7 +49,7 @@
                                                 <!-- Videos -->
                                                 @forelse($videos as $video)
                                                 <tr>
-                                                  <td><a target="_blank" href="">{{ $video->title }}  <span class="badge badge-info">Video</span></a></td>
+                                                  <td><a target="_blank" href="https://www.youtube.com/watch?v={{ $video->url ?? 'N/A' }}">{{ $video->title }}  <span class="badge badge-info">Video</span></a></td>
                                                 </tr>
                                                 @empty
                                                 <div class="text-center">

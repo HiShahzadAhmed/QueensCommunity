@@ -128,9 +128,12 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->namespace('Admin')-
         'blogs'         => 'BlogController',
         'questions'     => 'QuestionController',
         'videos'        => 'VideoController',
+        'pools'        => 'PoolController',
         'categories'    => 'CategoryController',
         'pwls'          => 'PwlController',
     ]);
+    Route::get('answer/destroy/{id}', 'QuestionController@answerDestroy')->name('answer.destroy');
+
     Route::get('teams/remove/{id?}', 'TeamController@remove')->name('teams.remove');
 
 

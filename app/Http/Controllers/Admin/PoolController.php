@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Question;
-use App\Models\QuestionAnswer;
-class QuestionController extends Controller
+use App\Models\Pool;
+class PoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::orderBy('updated_at', 'ASC')->get();
-        return view('admin.questions.index', get_defined_vars());
+        $pools = Pool::orderBy('updated_at', 'ASC')->get();
+        return view('admin.pools.index', get_defined_vars());
     }
 
     /**
@@ -38,7 +36,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //
     }
 
     /**
@@ -49,8 +47,8 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $questions = Question::find($id);
-        return view('admin.questions.show', get_defined_vars());
+        $pools = Pool::find($id);
+        return view('admin.pools.show', get_defined_vars());
     }
 
     /**
@@ -61,7 +59,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -73,7 +71,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -84,13 +82,7 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        Question::find($id)->delete();
-        return redirect()->back()->with('message', 'Question has been deleted.');
+        Pool::find($id)->delete();
+        return redirect()->back()->with('message', 'Pool has been deleted.');
     }
-    public function answerDestroy($id){
-        QuestionAnswer::find($id)->delete();
-        return redirect()->back()->with('message', 'Answer has been deleted.');
-    }
-
-
 }
