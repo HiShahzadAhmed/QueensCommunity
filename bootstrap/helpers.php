@@ -2,6 +2,10 @@
 use Carbon\Carbon;
 use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Blog;
+use App\Models\Video;
+use App\Models\Question;
+use App\Models\Pool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -36,11 +40,40 @@ use Illuminate\Support\Facades\Mail;
     function categories(){
         return Category::groupBy('category')->get();
     }
-    
+
     function subCategories($category){
 
         return Category::whereCategory($category)->get()->pluck('sub_category');
     }
+
+    function blogs()
+    {
+        return Blog::all();
+    }
+
+    function videos()
+    {
+        return Video::all();
+    }
+    function countQuestion()
+    {
+        return Question::all()->count();
+    }
+    function countPools()
+    {
+        return Pool::all()->count();
+    }
+
+    function countBlogs()
+    {
+        return Blog::all()->count();
+    }
+
+    function countVideos()
+    {
+        return Video::all()->count();
+    }
+
 
 
 

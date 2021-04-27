@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'Watch')
+@section('title', 'Home')
 
 @section('content')
 <section id="blog" class="index-videos">

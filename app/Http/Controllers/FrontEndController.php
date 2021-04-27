@@ -7,6 +7,8 @@ use App\Models\Question;
 use App\Models\Pool;
 use App\Models\Blog;
 use App\Models\Video;
+use App\Models\Product;
+use App\Models\Pwl;
 use App\Models\Category;
 use Auth;
 use Spatie\Permission\Models\Permission;
@@ -246,13 +248,36 @@ class FrontEndController extends Controller
 
         }
 
-            public function about()
-            {
-                return view('front.about', get_defined_vars());
-            }
-            public function contact()
-            {
-                return view('front.contact', get_defined_vars());
-            }
+        public function about()
+        {
+            return view('front.about', get_defined_vars());
+        }
+
+        public function contact()
+        {
+            return view('front.contact', get_defined_vars());
+        }
+
+        public function pwl()
+        {
+            $pwls = Pwl::latest()->get();
+            return view('front.pwl.pwl', get_defined_vars());
+        }
+        public function pwlDetail($id, $slug)
+        {
+            $pwls = Pwl::latest()->take(6)->get();
+            $pwl = Pwl::whereUuid($id)->first();
+            return view('front.pwl.pwl_detail', get_defined_vars());
+        }
+
+        public function videoDetail($slug)
+        {
+            $video = Video::whereSlug($slug)->first();
+            $products = Product::whereVideoId($video->id)->get();
+            return view('front.videos.video_detail', get_defined_vars());
+        }
+
+
+
 
 }

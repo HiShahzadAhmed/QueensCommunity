@@ -2,7 +2,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto mt-1"><a class="navbar-brand mt-0" style="padding-top: 0px;" href="">
-                    <div class="brand-logo" style="background-image: url('{{ asset(Auth::User()->avatar)  }}');"></div>
+                    <div class="brand-logo" style="background-image: url('{{ asset(Auth::User()->avatar)  }}'); border-radius: 100px;"></div>
                     <h2 class="brand-text mb-0"><img src="{{ asset($setting['logo'] ?? '')  }}" style="width: 120px;" alt=""></h2>
                 </a></li>
             <!--    <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
@@ -18,12 +18,18 @@
             @can('browse_questions')
                 <li class="nav-item @routeis('admin.questions.index') active @endrouteis"><a href="{{ route('admin.questions.index') }}"><i class="feather icon-help-circle"></i>Questions</a></li>
             @endcan
-            @can('browse_questions')
+            @can('browse_pools')
             <li class="nav-item @routeis('admin.pools.index') active @endrouteis"><a href="{{ route('admin.pools.index') }}"><i class="feather icon-help-circle"></i>Pools</a></li>
            @endcan
 
             <li class=" navigation-header"><span>Others</span></li>
-            <li class="nav-item"><a href=""><i class="feather icon-users"></i>Members</a></li>
+            <li class="nav-item"><a href=""><i class="feather icon-users"></i>Members</a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item"><a href=""><i class="fa fa-circle"></i>Community Members</a>
+                        <li class="nav-item"><a href=""><i class="fa fa-circle"></i>Doctor</a>
+                  </ul>
+            </li>
+
             <li class="nav-item @routeis('admin.setting.index') active @endrouteis"><a href="{{ route('admin.setting.index') }}"><i class="feather icon-settings"></i>Settings</a></li>
 
 
@@ -44,7 +50,11 @@
 
             <li class="nav-item @routeis('admin.inquiries') active @endrouteis"><a href="{{ route('admin.inquiries') }}"><i class="feather icon-info"></i>Inquiries</a></li>
 
+
             <li class="nav-item @routeis('admin.pwls.index') active @endrouteis"><a href="{{ route('admin.pwls.index') }}"><i class="feather icon-award"></i>Pwl</a></li>
+
+
+            <li class="nav-item @routeis('admin.products.index') active @endrouteis"><a href="{{ route('admin.products.index') }}"><i class="feather icon-bar-chart"></i>Products</a></li>
 
 
             <li class=" navigation-header"><span>Site Settings</span></li>

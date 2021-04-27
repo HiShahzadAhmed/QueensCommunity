@@ -61,11 +61,7 @@
                                         <td>{{ $questions->sub_category ?? 'N/A' }}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Status</td>
-                                        <td><span class="badge badge-warning">{{ $questions->status ?? 'N/A' }}</span>
-                                        </td>
-                                    </tr>
+
                                     <tr>
                                         <td class="font-weight-bold">Tags</td>
                                         <td>{{ $questions->tags ?? 'N/A' }}

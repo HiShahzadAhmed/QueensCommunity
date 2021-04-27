@@ -71,7 +71,7 @@
 
 			</ul>
 			<span class="navbar-text">
-				<a href="#" class="btn btn-primary btn-sm navbar-btn text-white">PWL</a>
+				<a href="{{ route('pwl') }}" class="btn btn-primary btn-sm navbar-btn text-white">PQL</a>
 			</span>
 		</div>
 	</nav>
